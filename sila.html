@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Map Pancasila - Layout PowerPoint</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            overflow: hidden;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .header p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #f8f8f8;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+        .mindmap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 15px;
+            width: 100%;
+            padding: 15px;
+        }
+        .sila {
+            background: linear-gradient(145deg, #2a3a4c, #1a2a3c);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            min-height: 380px;
+        }
+        .sila:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+        .sila-number {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom-right-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .sila-title {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 10px 0 15px;
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            line-height: 1.3;
+        }
+        .sila-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .content-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 6px;
+            display: block;
+            font-size: 0.95rem;
+        }
+        .sila-makna, .sila-pasal {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
+        }
+        .sila-makna {
+            border-left-color: #2ecc71;
+        }
+        .sila-pasal {
+            border-left-color: #e74c3c;
+        }
+        .sila:nth-child(1) { background: linear-gradient(145deg, #4a6b3d, #3a5a2c); }
+        .sila:nth-child(2) { background: linear-gradient(145deg, #3d4a6b, #2d3a5c); }
+        .sila:nth-child(3) { background: linear-gradient(145deg, #6b3d4a, #5c2d3a); }
+        .sila:nth-child(4) { background: linear-gradient(145deg, #6b4a3d, #5c3a2c); }
+        .sila:nth-child(5) { background: linear-gradient(145deg, #3d6b4a, #2d5c3a); }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .instructions {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            max-width: 800px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Media queries untuk responsivitas */
+        @media (max-width: 1000px) {
+            .mindmap {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .sila {
+                flex-basis: calc(50% - 15px);
+                min-width: 280px;
+            }
+        }
+        @media (max-width: 600px) {
+            .sila {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-map"></i> Mind Map Pancasila</h1>
+        <p>Visualisasi hubungan antara sila-sila Pancasila, makna politik, dan pasal UUD 1945 yang terkait</p>
+    </div>
+    
+    <div class="container">
+        <div class="mindmap">
+            <div class="sila">
+                <div class="sila-number">1</div>
+                <h2 class="sila-title">Ketuhanan Yang Maha Esa</h2>
+                <div class="sila-content">
+                    <div class="sila-makna">
+                        <span class="content-title"><i class="fas fa-balance-scale"></i> Makna Politik:</span>
+                        Menjamin kebebasan beragama dan nilai toleransi
+                    </div>
+                    <div class="sila-pasal">
+                        <span class="content-title"><i class="fas fa-book"></i> Pasal UUD 1945:</span>
+                        Pasal 29 ayat (1) dan (2)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sila">
+                <div class="sila-number">2</div>
+                <h2 class="sila-title">Kemanusiaan yang Adil dan Beradab</h2>
+                <div class="sila-content">
+                    <div class="sila-makna">
+                        <span class="content-title"><i class="fas fa-balance-scale"></i> Makna Politik:</span>
+                        Pengakuan hak dan kewajiban yang sama
+                    </div>
+                    <div class="sila-pasal">
+                        <span class="content-title"><i class="fas fa-book"></i> Pasal UUD 1945:</span>
+                        Pasal 28A sampai 28J (HAM)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sila">
+                <div class="sila-number">3</div>
+                <h2 class="sila-title">Persatuan Indonesia</h2>
+                <div class="sila-content">
+                    <div class="sila-makna">
+                        <span class="content-title"><i class="fas fa-balance-scale"></i> Makna Politik:</span>
+                        Negara kesatuan, bahasa dan warga negara satu
+                    </div>
+                    <div class="sila-pasal">
+                        <span class="content-title"><i class="fas fa-book"></i> Pasal UUD 1945:</span>
+                        Pasal 1 ayat (1); Pasal 26 ayat (1); Pasal 36
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sila">
+                <div class="sila-number">4</div>
+                <h2 class="sila-title">Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan</h2>
+                <div class="sila-content">
+                    <div class="sila-makna">
+                        <span class="content-title"><i class="fas fa-balance-scale"></i> Makna Politik:</span>
+                        Sistem demokrasi perwakilan dan musyawarah
+                    </div>
+                    <div class="sila-pasal">
+                        <span class="content-title"><i class="fas fa-book"></i> Pasal UUD 1945:</span>
+                        Pasal 1 ayat (2); Pasal 22E; Pasal 22F; Pasal 19
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sila">
+                <div class="sila-number">5</div>
+                <h2 class="sila-title">Keadilan Sosial bagi Seluruh Rakyat Indonesia</h2>
+                <div class="sila-content">
+                    <div class="sila-makna">
+                        <span class="content-title"><i class="fas fa-balance-scale"></i> Makna Politik:</span>
+                        Tanggung jawab negara atas kesejahteraan sosial
+                    </div>
+                    <div class="sila-pasal">
+                        <span class="content-title"><i class="fas fa-book"></i> Pasal UUD 1945:</span>
+                        Pasal 33 ayat (1)–(4); Pasal 34 ayat (1)–(4)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p><i class="fas fa-info-circle"></i> Mind Map Pancasila dan UUD 1945 | Layout Horizontal untuk PowerPoint by @yudhave_</p>
+    </div>
+</body>
+</html>
